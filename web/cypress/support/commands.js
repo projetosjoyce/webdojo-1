@@ -33,6 +33,13 @@ Cypress.Commands.add('start', () => {
     cy.visit('/')
 })
 
+Cypress.Commands.add('goToSignup', () => {
+    cy.start()
+    cy.get('a[href="/register"]').click()
+    cy.contains('h2', 'Crie sua conta')
+        .should('be.visible')
+})
+
 Cypress.Commands.add('submitLoginForm', (email, senha) => {
     cy.get('#email').type(email)
     cy.get('#password').type(senha)
@@ -57,9 +64,9 @@ Cypress.Commands.add('login', (ui = false) => {
     } else {
         const token = 'e1033d63a53fe66c0fd3451c7fd8f617'
         const loginDate = getTodayFormattedDate()
-    
+
         cy.setCookie('login_date', loginDate)
-    
+
         cy.visit('/dashboard', {
             onBeforeLoad(win) {
                 win.localStorage.setItem('token', token)
