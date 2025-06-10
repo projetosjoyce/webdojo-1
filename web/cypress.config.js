@@ -6,7 +6,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     experimentalStudio: true,
-    video: true, //npx cypress run --browser=chrome
+    video: false, //npx cypress run --browser=chrome
   },
 });
 
